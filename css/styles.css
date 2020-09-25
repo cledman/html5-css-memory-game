@@ -1,0 +1,58 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: rgb(188, 248, 228);
+  display: flex;
+  height: 100vh;
+}
+
+.memory-game {
+  display: flex;
+  height: 640px;
+  flex-wrap: wrap;
+  margin: auto;
+  perspective: 1000px; /* the bigger, the more effect we have */
+  width: 640px;
+}
+
+.card {
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  height: calc(33.333% - 10px);
+  margin: 5px;
+  position: relative;
+  transform: scale(1);
+  transform-style: preserve-3d; /* 3d perspective */
+  transition: transform 0.9s; /* flip moviment */
+  width: calc(25% - 10px);
+}
+
+.card:active {
+  transform: scale(0.97);
+  transition: transform 0.2s;
+}
+
+.card-front,
+.card-back {
+  background: rgb(92, 187, 182);
+  backface-visibility: hidden; /* hides the backface from element */
+  border-radius: 5px;
+  height: 100%;
+  padding: 20px;
+  position: absolute;
+  width: 100%;
+}
+
+/* antes, o verso aparecia transparente, pois ambas as imagens tem position absolute, ao girar no eixo Y, elas ficaram com os versos virados */
+.card-front {
+  transform: rotateY(180deg);
+}
+
+/* flip card animation */
+.card.flip {
+  transform: rotateY(180deg);
+}
